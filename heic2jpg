@@ -1,0 +1,18 @@
+#/bin/bash
+
+dir=$1
+
+new_dir_name="${dir}_jpg"
+mkdir $new_dir_name
+
+cd $dir
+
+for FILE in *; do
+	echo "Converting of ${FILE}"
+	new_file_name="`basename $FILE .HEIC`.JPEG"
+	magick $FILE "../$new_dir_name/${new_file_name}"
+	
+done
+
+echo "Convertion completed"
+cd ..
